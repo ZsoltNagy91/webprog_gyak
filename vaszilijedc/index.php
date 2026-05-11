@@ -43,7 +43,7 @@
 
     <header id="header">
 
-        <a href="index.html" class="logo">
+        <a href="index.php" class="logo">
             Vaszilij EDC
         </a>
 
@@ -56,16 +56,13 @@
         <ul class="links">
 
             <li class="active">
-                <a href="index.html">Kezdőlap</a>
+                <a href="index.php">Kezdőlap</a>
             </li>
 
             <li>
                 <a href="blog.php">Blog</a>
             </li>
 
-            <li>
-                <a href="#">Írások</a>
-            </li>
 
             <li>
                  <a href="contact.php">Üzenetküldés</a>
@@ -76,7 +73,7 @@
             </li>
 
             <li>
-                <a href="login.html">Belépés</a>
+                <a href="login.php">Belépés</a>
             </li>
 
         </ul>
@@ -224,53 +221,7 @@
 
         </article>
 
-        <!-- BLOKKOK -->
 
-        <section class="posts info-boxes">
-
-            <article>
-
-                <h2>Facebook</h2>
-
-                <p>
-                    Vaszilij EDC a Facebookon.
-                </p>
-
-                <a href="#" class="button">
-                    Megnézem
-                </a>
-
-            </article>
-
-            <article>
-
-                <h2>Közösség</h2>
-
-                <p>
-                    Ahol te adod a tartalmat.
-                </p>
-
-                <a href="#" class="button">
-                    Megnézem
-                </a>
-
-            </article>
-
-            <article>
-
-                <h2>Üzenet</h2>
-
-                <p>
-                    Küldj üzenetet nekem!
-                </p>
-
-                <a href="#" class="button">
-                    Megnézem
-                </a>
-
-            </article>
-
-        </section>
 
         <!-- MÁSODIK KIEMELT -->
 

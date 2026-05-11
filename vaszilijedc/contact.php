@@ -165,7 +165,7 @@ $success = isset($_GET['success']);
 
     <!-- Header -->
     <header id="header">
-        <a href="index.html" class="logo">VASZILIJ EDC</a>
+        <a href="index.php" class="logo">VASZILIJ EDC</a>
     </header>
 
     <!-- NAV -->
@@ -174,16 +174,13 @@ $success = isset($_GET['success']);
         <ul class="links">
 
             <li>
-                <a href="index.html">Kezdőlap</a>
+                <a href="index.php">Kezdőlap</a>
             </li>
 
             <li>
                 <a href="blog.php">Blog</a>
             </li>
 
-            <li>
-                <a href="articles.html">Írások</a>
-            </li>
 
             <li class="active">
                 <a href="contact.php">Üzenetküldés</a>
@@ -194,7 +191,7 @@ $success = isset($_GET['success']);
             </li>
 
             <li>
-                <a href="login.html">Belépés</a>
+                <a href="login.php">Belépés</a>
             </li>
 
         </ul>

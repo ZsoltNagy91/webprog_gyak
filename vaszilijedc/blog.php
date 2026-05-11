@@ -34,26 +34,22 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- HEADER -->
     <header id="header">
-        <a href="index.html" class="logo">
+        <a href="index.php" class="logo">
             Vaszilij EDC
         </a>
     </header>
-
+    
     <!-- NAV -->
     <nav id="nav">
 
         <ul class="links">
 
             <li>
-                <a href="index.html">Kezdőlap</a>
+                <a href="index.php">Kezdőlap</a>
             </li>
 
             <li class="active">
                 <a href="blog.php">Blog</a>
-            </li>
-
-            <li>
-                <a href="articles.html">Írások</a>
             </li>
 
             <li>
@@ -65,32 +61,35 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </li>
 
             <li>
-                <a href="login.html">Belépés</a>
+                <a href="login.php">Belépés</a>
             </li>
 
         </ul>
 
         <ul class="icons">
 
-            <li>
-                <a href="#" class="icon brands fa-facebook-f">
-                    <span class="label">Facebook</span>
-                </a>
-            </li>
+           <li>
+        <a href="https://facebook.com" target="_blank"
+           class="icon brands fa-facebook-f">
+            <span class="label">Facebook</span>
+        </a>
+    </li>
 
-            <li>
-                <a href="#" class="icon brands fa-instagram">
-                    <span class="label">Instagram</span>
-                </a>
-            </li>
+    <li>
+        <a href="https://instagram.com" target="_blank"
+           class="icon brands fa-instagram">
+            <span class="label">Instagram</span>
+        </a>
+    </li>
 
-            <li>
-                <a href="#" class="icon brands fa-youtube">
-                    <span class="label">Youtube</span>
-                </a>
-            </li>
+    <li>
+        <a href="https://youtube.com" target="_blank"
+           class="icon brands fa-youtube">
+            <span class="label">Youtube</span>
+        </a>
+    </li>
 
-        </ul>
+    </ul>
 
     </nav>
 
