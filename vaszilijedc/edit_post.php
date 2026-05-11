@@ -133,7 +133,6 @@ if (!$post) {
         <ul class="links">
             <li><a href="index.php">Kezdőlap</a></li>
             <li><a href="blog.php">Blog</a></li>
-            <li><a href="articles.html">Írások</a></li>
             <li><a href="contact.php">Üzenetküldés</a></li>
             <li><a href="support.html">Támogatás</a></li>
             <li class="active"><a href="manage_posts.php">Bejegyzések kezelése</a></li>
