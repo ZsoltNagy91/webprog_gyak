@@ -86,7 +86,7 @@ $success = isset($_GET['success']);
             height: 350px;
             border: 0;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.15);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         }
 
         .contact-form form {
@@ -161,179 +161,180 @@ $success = isset($_GET['success']);
 
 <body class="is-preload">
 
-<div id="wrapper">
+    <div id="wrapper">
 
-    <!-- Header -->
-    <header id="header">
-        <a href="index.html" class="logo">VASZILIJ EDC</a>
-    </header>
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">VASZILIJ EDC</a>
+        </header>
 
-    <!-- NAV -->
-    <nav id="nav">
+        <!-- NAV -->
+        <nav id="nav">
 
-        <ul class="links">
+            <ul class="links">
 
-            <li>
-                <a href="index.html">Kezdőlap</a>
-            </li>
+                <li>
+                    <a href="index.html">Kezdőlap</a>
+                </li>
 
-            <li>
-                <a href="blog.php">Blog</a>
-            </li>
+                <li>
+                    <a href="blog.php">Blog</a>
+                </li>
 
-            <li>
-                <a href="articles.html">Írások</a>
-            </li>
+                <li>
+                    <a href="articles.html">Írások</a>
+                </li>
 
-            <li class="active">
-                <a href="contact.php">Üzenetküldés</a>
-            </li>
+                <li class="active">
+                    <a href="contact.php">Üzenetküldés</a>
+                </li>
 
-            <li>
-                <a href="support.html">Támogatás</a>
-            </li>
+                <li>
+                    <a href="support.html">Támogatás</a>
+                </li>
 
-            <li>
-                <a href="login.html">Belépés</a>
-            </li>
+                <li>
+                    <a href="login.php">Belépés</a>
+                </li>
 
-        </ul>
+            </ul>
 
-        <ul class="icons">
+            <ul class="icons">
 
-            <li>
-        <a href="https://facebook.com" target="_blank"
-           class="icon brands fa-facebook-f">
-            <span class="label">Facebook</span>
-        </a>
-    </li>
+                <li>
+                    <a href="https://facebook.com" target="_blank"
+                        class="icon brands fa-facebook-f">
+                        <span class="label">Facebook</span>
+                    </a>
+                </li>
 
-    <li>
-        <a href="https://instagram.com" target="_blank"
-           class="icon brands fa-instagram">
-            <span class="label">Instagram</span>
-        </a>
-    </li>
+                <li>
+                    <a href="https://instagram.com" target="_blank"
+                        class="icon brands fa-instagram">
+                        <span class="label">Instagram</span>
+                    </a>
+                </li>
 
-    <li>
-        <a href="https://youtube.com" target="_blank"
-           class="icon brands fa-youtube">
-            <span class="label">Youtube</span>
-        </a>
-    </li>
+                <li>
+                    <a href="https://youtube.com" target="_blank"
+                        class="icon brands fa-youtube">
+                        <span class="label">Youtube</span>
+                    </a>
+                </li>
 
-        </ul>
+            </ul>
 
-    </nav>
+        </nav>
 
-    <!-- MAIN -->
-    <div id="main">
+        <!-- MAIN -->
+        <div id="main">
 
-        <section class="contact-wrapper">
+            <section class="contact-wrapper">
 
-            <div class="page-title">
-                <h1>ÜZENETKÜLDÉS</h1>
-                <p>Lépj kapcsolatba velem vagy a közösséggel.</p>
+                <div class="page-title">
+                    <h1>ÜZENETKÜLDÉS</h1>
+                    <p>Lépj kapcsolatba velem vagy a közösséggel.</p>
 
-                <?php if ($success): ?>
-                    <div class="success-message">
-                        Az üzenetet sikeresen elküldtük.
+                    <?php if ($success): ?>
+                        <div class="success-message">
+                            Az üzenetet sikeresen elküldtük.
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <div class="contact-grid">
+
+                    <!-- BAL OLDAL -->
+                    <div class="contact-info">
+
+                        <h2>KAPCSOLAT</h2>
+
+                        <p>
+                            Vaszilij EDC közösség és blog.
+                        </p>
+
+                        <p>
+                            Email:<br>
+                            kapcsolat@vaszilijedc.hu
+                        </p>
+
+                        <p>
+                            Kecskemét, Magyarország
+                        </p>
+
+                        <!-- TÉRKÉP -->
+                        <div class="map-section">
+
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d810.5515450339254!2d19.66748336186682!3d46.8956467423111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4743da7a6c479e1d%3A0xc8292b3f6dc69e7f!2sNeumann%20J%C3%A1nos%20Egyetem%20GAMF%20M%C5%B1szaki%20%C3%A9s%20Informatikai%20Kar!5e0!3m2!1shu!2shu!4v1778173901005!5m2!1shu!2shu"
+                                allowfullscreen=""
+                                loading="lazy">
+                            </iframe>
+
+                        </div>
+
                     </div>
-                <?php endif; ?>
-            </div>
 
-            <div class="contact-grid">
+                    <!-- JOBB OLDAL -->
+                    <div class="contact-form">
 
-                <!-- BAL OLDAL -->
-                <div class="contact-info">
+                        <h2>ÍRJ ÜZENETET</h2>
 
-                    <h2>KAPCSOLAT</h2>
+                        <form action="save_message.php" method="post">
 
-                    <p>
-                        Vaszilij EDC közösség és blog.
-                    </p>
+                            <input type="text"
+                                name="name"
+                                placeholder="Teljes név"
+                                required>
 
-                    <p>
-                        Email:<br>
-                        kapcsolat@vaszilijedc.hu
-                    </p>
+                            <input type="email"
+                                name="email"
+                                placeholder="Email cím"
+                                required>
 
-                    <p>
-                        Kecskemét, Magyarország
-                    </p>
+                            <input type="text"
+                                name="subject"
+                                placeholder="Tárgy">
 
-                    <!-- TÉRKÉP -->
-                    <div class="map-section">
+                            <textarea name="message"
+                                placeholder="Írd ide az üzeneted..."
+                                required></textarea>
 
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d810.5515450339254!2d19.66748336186682!3d46.8956467423111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4743da7a6c479e1d%3A0xc8292b3f6dc69e7f!2sNeumann%20J%C3%A1nos%20Egyetem%20GAMF%20M%C5%B1szaki%20%C3%A9s%20Informatikai%20Kar!5e0!3m2!1shu!2shu!4v1778173901005!5m2!1shu!2shu"
-                            allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
+                            <button type="submit">
+                                Küldés
+                            </button>
+
+                        </form>
 
                     </div>
 
                 </div>
 
-                <!-- JOBB OLDAL -->
-                <div class="contact-form">
+            </section>
 
-                    <h2>ÍRJ ÜZENETET</h2>
+        </div>
 
-                    <form action="save_message.php" method="post">
+        <!-- Footer -->
+        <footer id="footer">
 
-                        <input type="text"
-                               name="name"
-                               placeholder="Teljes név"
-                               required>
+            <section>
+                <h3>Vaszilij EDC</h3>
+                <p>
+                    EDC • Kések • Outdoor • Felszerelések
+                </p>
+            </section>
 
-                        <input type="email"
-                               name="email"
-                               placeholder="Email cím"
-                               required>
-
-                        <input type="text"
-                               name="subject"
-                               placeholder="Tárgy">
-
-                        <textarea name="message"
-                                  placeholder="Írd ide az üzeneted..."
-                                  required></textarea>
-
-                        <button type="submit">
-                            Küldés
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </section>
+        </footer>
 
     </div>
 
-    <!-- Footer -->
-    <footer id="footer">
-
-        <section>
-            <h3>Vaszilij EDC</h3>
-            <p>
-                EDC • Kések • Outdoor • Felszerelések
-            </p>
-        </section>
-
-    </footer>
-
-</div>
-
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
