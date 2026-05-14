@@ -1,3 +1,6 @@
+<?php require_once 'config/init.php'; ?>
+<!DOCTYPE HTML>
+...
 <!DOCTYPE HTML>
 <html lang="hu">
 
@@ -41,59 +44,6 @@
         <?php
         include 'user_management_api/navbar.php';
         ?>
-        <nav id="nav">
-
-            <ul class="links">
-
-                <li>
-                    <a href="index.php">Kezdőlap</a>
-                </li>
-
-                <li>
-                    <a href="blog.php">Blog</a>
-                </li>
-
-                <li>
-                    <a href="articles.html">Írások</a>
-                </li>
-
-                <li>
-                    <a href="contact.php">Üzenetküldés</a>
-                </li>
-
-                <li>
-                    <a href="support.html">Támogatás</a>
-                </li>
-
-                <li class="active">
-                    <a href="login.html">Belépés</a>
-                </li>
-
-            </ul>
-
-            <ul class="icons">
-
-                <li>
-                    <a href="#" class="icon brands fa-facebook-f">
-                        <span class="label">Facebook</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="icon brands fa-instagram">
-                        <span class="label">Instagram</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="icon brands fa-youtube">
-                        <span class="label">Youtube</span>
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
         <!-- Main -->
 
         <div id="main">

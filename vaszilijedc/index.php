@@ -1,6 +1,6 @@
-<?php
-session_start();
-?>
+<?php require_once 'config/init.php'; ?>
+<!DOCTYPE HTML>
+...
 
 <!DOCTYPE HTML>
 <html lang="hu">
@@ -54,64 +54,9 @@ session_start();
         </header>
 
         <!-- NAVBAR -->
-
-        <nav id="nav">
-
-            <ul class="links">
-
-                <li class="active">
-                    <a href="index.php">Kezdőlap</a>
-                </li>
-
-                <li>
-                    <a href="blog.php">Blog</a>
-                </li>
-
-                <li>
-                    <a href="#">Írások</a>
-                </li>
-
-                <li>
-                    <a href="contact.php">Üzenetküldés</a>
-                </li>
-
-                <li>
-                    <a href="support.html">Támogatás</a>
-                </li>
-
-                <li>
-                    <a href="login.php">Belépés</a>
-                </li>
-
-            </ul>
-
-            <ul class="icons">
-
-                <li>
-                    <a href="https://facebook.com" target="_blank"
-                        class="icon brands fa-facebook-f">
-                        <span class="label">Facebook</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://instagram.com" target="_blank"
-                        class="icon brands fa-instagram">
-                        <span class="label">Instagram</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="https://youtube.com" target="_blank"
-                        class="icon brands fa-youtube">
-                        <span class="label">Youtube</span>
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-
+        <?php
+        include 'user_management_api/navbar.php';
+        ?>
         <!-- MAIN -->
 
         <div id="main">

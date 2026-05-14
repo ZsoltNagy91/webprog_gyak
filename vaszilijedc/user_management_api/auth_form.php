@@ -7,254 +7,281 @@ if (!empty($_SESSION['user_id'])) return;
 
 <style>
     .af-wrap {
-        --af-bg: #0f0f11;
-        --af-surface: #18181c;
-        --af-border: #2e2e36;
-        --af-accent: #7c6dfa;
-        --af-accent2: #a78bfa;
-        --af-text: #e8e8f0;
-        --af-muted: #6b6b80;
-        --af-error: #f87171;
-        --af-success: #4ade80;
-        --af-radius: 14px;
-        --af-font: 'DM Sans', sans-serif;
-        --af-serif: 'DM Serif Display', serif;
-
-        font-family: var(--af-font);
+        font-family: "Merriweather", Georgia, serif;
+        font-weight: 300;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 4rem;
     }
 
     .af-card {
-        background: var(--af-surface);
-        border: 1px solid var(--af-border);
-        border-radius: 24px;
+        background: #ffffff;
         width: 100%;
-        max-width: 420px;
-        padding: 2.5rem 2.5rem 2rem;
+        max-width: 480px;
+        padding: 3rem;
         position: relative;
-        overflow: hidden;
     }
 
+    /* Felső kék csík – a téma button/accent színével */
     .af-card::before {
         content: '';
+        display: block;
+        height: 4px;
+        background: #18bfef;
         position: absolute;
-        top: -80px;
-        right: -80px;
-        width: 220px;
-        height: 220px;
-        background: radial-gradient(circle, rgba(124, 109, 250, 0.18) 0%, transparent 70%);
-        pointer-events: none;
+        top: 0;
+        left: 0;
+        right: 0;
     }
 
+    /* ── Fejléc ── */
     .af-header {
         margin-bottom: 2rem;
+        border-bottom: solid 2px #eeeeee;
+        padding-bottom: 1.5rem;
     }
 
     .af-title {
-        font-family: var(--af-serif);
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-weight: 900;
         font-size: 1.75rem;
-        color: var(--af-text);
-        margin: 0 0 0.25rem;
-        line-height: 1.2;
+        line-height: 1.3;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+        color: #212931;
+        margin: 0 0 0.4rem;
     }
 
     .af-subtitle {
-        font-size: .875rem;
-        color: var(--af-muted);
+        font-size: 0.85rem;
+        color: #909498;
         margin: 0;
+        line-height: 1.6;
     }
 
+    /* ── Toggle gombok ── */
     .af-toggle {
         display: flex;
-        background: var(--af-bg);
-        border: 1px solid var(--af-border);
-        border-radius: 10px;
-        padding: 4px;
-        margin-bottom: 1.75rem;
-        gap: 4px;
+        gap: 0;
+        margin-bottom: 2rem;
+        border: solid 2px #eeeeee;
     }
 
     .af-toggle button {
         flex: 1;
-        padding: .55rem 0;
+        padding: 0.65rem 0;
         border: none;
-        border-radius: 7px;
-        font-family: var(--af-font);
-        font-size: .875rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background .2s, color .2s, box-shadow .2s;
         background: transparent;
-        color: var(--af-muted);
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 0.8rem;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+        color: #909498;
+        cursor: pointer;
+        transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+        border-right: solid 2px #eeeeee;
+    }
+
+    .af-toggle button:last-child {
+        border-right: none;
     }
 
     .af-toggle button.active {
-        background: var(--af-accent);
-        color: #fff;
-        box-shadow: 0 2px 12px rgba(124, 109, 250, .35);
+        background: #18bfef;
+        color: #ffffff;
     }
 
+    .af-toggle button:hover:not(.active) {
+        background: #f4f4f4;
+        color: #212931;
+    }
+
+    /* ── Form mezők ── */
     .af-form {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.25rem;
     }
 
     .af-field {
         display: flex;
         flex-direction: column;
-        gap: .4rem;
-    }
-
-    .af-label {
-        font-size: .8rem;
-        font-weight: 600;
-        color: var(--af-muted);
-        letter-spacing: .04em;
-        text-transform: uppercase;
-    }
-
-    .af-input {
-        background: var(--af-bg);
-        border: 1px solid var(--af-border);
-        border-radius: var(--af-radius);
-        color: var(--af-text);
-        font-family: var(--af-font);
-        font-size: .95rem;
-        padding: .75rem 1rem;
-        outline: none;
-        transition: border-color .2s, box-shadow .2s;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .af-input:focus {
-        border-color: var(--af-accent);
-        box-shadow: 0 0 0 3px rgba(124, 109, 250, .18);
-    }
-
-    .af-input::placeholder {
-        color: var(--af-muted);
-    }
-
-    .af-select {
-        appearance: none;
-        -webkit-appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b80' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 1rem center;
-        padding-right: 2.5rem;
-        cursor: pointer;
+        gap: 0.4rem;
     }
 
     .af-field.af-hidden {
         display: none;
     }
 
-    .af-submit {
-        background: var(--af-accent);
-        color: #fff;
-        border: none;
-        border-radius: var(--af-radius);
-        font-family: var(--af-font);
-        font-size: 1rem;
-        font-weight: 600;
-        padding: .85rem;
+    .af-label {
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 0.75rem;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+        color: #212931;
+    }
+
+    .af-input {
+        background: #ffffff;
+        border: solid 2px #eeeeee;
+        color: #212931;
+        font-family: "Merriweather", Georgia, serif;
+        font-weight: 300;
+        font-size: 0.9rem;
+        padding: 0.65rem 1rem;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    .af-input:focus {
+        border-color: #18bfef;
+        box-shadow: 0 0 0 2px rgba(24, 191, 239, 0.15);
+    }
+
+    .af-input::placeholder {
+        color: #c0c4c8;
+    }
+
+    .af-select {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23909498' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
         cursor: pointer;
-        margin-top: .5rem;
-        transition: background .2s, transform .1s, box-shadow .2s;
-        box-shadow: 0 4px 16px rgba(124, 109, 250, .3);
+    }
+
+    /* ── Submit gomb – a téma .button stílusával ── */
+    .af-submit {
+        display: block;
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 0.85rem 2rem;
+        background-color: transparent;
+        border: solid 3px #212931;
+        color: #212931;
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 0.8rem;
+        letter-spacing: 0.225em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
         position: relative;
     }
 
     .af-submit:hover {
-        background: var(--af-accent2);
-        box-shadow: 0 6px 20px rgba(124, 109, 250, .45);
+        background-color: #18bfef;
+        border-color: #18bfef;
+        color: #ffffff;
     }
 
     .af-submit:active {
-        transform: scale(.98);
+        background-color: #10a8d4;
+        border-color: #10a8d4;
+        color: #ffffff;
     }
 
     .af-submit:disabled {
-        opacity: .6;
+        opacity: 0.5;
         cursor: not-allowed;
-        transform: none;
     }
 
-    .af-msg {
-        display: none;
-        padding: .75rem 1rem;
-        border-radius: 10px;
-        font-size: .875rem;
-        font-weight: 500;
-        margin-top: .25rem;
-    }
-
-    .af-msg.error {
-        display: block;
-        background: rgba(248, 113, 113, .1);
-        border: 1px solid rgba(248, 113, 113, .3);
-        color: var(--af-error);
-    }
-
-    .af-msg.success {
-        display: block;
-        background: rgba(74, 222, 128, .1);
-        border: 1px solid rgba(74, 222, 128, .3);
-        color: var(--af-success);
+    /* Loading állapot */
+    .af-submit.loading .af-btn-text {
+        visibility: hidden;
     }
 
     .af-spinner {
         display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 18px;
         height: 18px;
-        border: 2px solid rgba(255, 255, 255, .3);
-        border-top-color: #fff;
+        border: 2px solid rgba(33, 41, 49, 0.2);
+        border-top-color: #212931;
         border-radius: 50%;
-        animation: af-spin .7s linear infinite;
-        margin: 0 auto;
-    }
-
-    @keyframes af-spin {
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
-    .af-submit.loading .af-btn-text {
-        display: none;
+        animation: af-spin 0.7s linear infinite;
     }
 
     .af-submit.loading .af-spinner {
         display: block;
     }
 
+    .af-submit:hover .af-spinner,
+    .af-submit.loading:hover .af-spinner {
+        border-top-color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes af-spin {
+        to {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
+
+    /* ── Üzenetek ── */
+    .af-msg {
+        display: none;
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 300;
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+
+    .af-msg.error {
+        display: block;
+        background: rgba(231, 76, 60, 0.08);
+        border-left: solid 4px #e74c3c;
+        color: #c0392b;
+    }
+
+    .af-msg.success {
+        display: block;
+        background: rgba(24, 191, 239, 0.08);
+        border-left: solid 4px #18bfef;
+        color: #0d8cad;
+    }
+
+    /* ── Lábléc link ── */
     .af-footer {
         text-align: center;
-        margin-top: 1.25rem;
-        font-size: .85rem;
-        color: var(--af-muted);
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: solid 2px #eeeeee;
+        font-size: 0.8rem;
+        color: #909498;
+        line-height: 1.6;
     }
 
     .af-footer a {
-        color: var(--af-accent2);
+        color: #18bfef;
+        border-bottom: dotted 1px rgba(24, 191, 239, 0.5);
         text-decoration: none;
-        font-weight: 500;
         cursor: pointer;
+        transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     }
 
     .af-footer a:hover {
-        text-decoration: underline;
+        color: #10a8d4;
+        border-bottom-color: transparent;
     }
 
+    /* ── Fade animáció ── */
     @keyframes af-fade-in {
         from {
             opacity: 0;
-            transform: translateY(6px);
+            transform: translateY(5px);
         }
 
         to {
@@ -264,7 +291,7 @@ if (!empty($_SESSION['user_id'])) return;
     }
 
     .af-form {
-        animation: af-fade-in .25s ease;
+        animation: af-fade-in 0.2s ease;
     }
 </style>
 
@@ -330,7 +357,7 @@ if (!empty($_SESSION['user_id'])) return;
 
 <script>
     (function() {
-        const API_URL = 'user_management_api/users_api.php';
+        const API_URL = '/WEBPROG_GYAK/vaszilijedc/user_management_api/users_api.php';
         let afMode = 'login';
 
         // Ha az URL-ben ?tab=register van, rögtön regisztrációs módra vált

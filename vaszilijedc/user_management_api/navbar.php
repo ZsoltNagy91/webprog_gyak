@@ -1,300 +1,150 @@
 <?php
-// Használat: <?php include 'user_management_api/navbar.php'; 
+// navbar.php – Beágyazható navigációs sáv
 
-$isLoggedIn = !empty($_SESSION['user_id']);
+$isLoggedIn  = !empty($_SESSION['user_id']);
 $navUsername = $isLoggedIn ? htmlspecialchars($_SESSION['username']) : '';
-$navRole = $isLoggedIn ? $_SESSION['role'] : '';
-$navInitial = $isLoggedIn ? strtoupper(substr($navUsername, 0, 1)) : '';
+$navRole     = $isLoggedIn ? $_SESSION['role'] : '';
+$isAdmin     = $navRole === 'admin';
 ?>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Epilogue:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
-    .nb-wrap {
-        --nb-bg: rgba(8, 10, 15, .92);
-        --nb-border: #1f2433;
-        --nb-text: #e2e8f8;
-        --nb-muted: #5a6480;
-        --nb-muted2: #8892aa;
-        --nb-accent: #3b82f6;
-        --nb-accent2: #6366f1;
-        --nb-danger: #ef4444;
-        --nb-admin: #a855f7;
-        --nb-user: #3b82f6;
-
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: var(--nb-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-bottom: 1px solid var(--nb-border);
-        font-family: 'Epilogue', sans-serif;
-    }
-
-    .nb-inner {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: .875rem 2rem;
+    /* ── Session badge a nav-ban ── */
+    #nav .nav-user-info {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-
-    /* Brand */
-    .nb-brand {
-        font-family: 'Syne', sans-serif;
-        font-weight: 800;
-        font-size: 1.15rem;
-        letter-spacing: -.02em;
-        background: linear-gradient(135deg, #3b82f6, #6366f1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-decoration: none;
+        gap: 0;
         flex-shrink: 0;
+        height: 4rem;
+        line-height: 4rem;
     }
 
-    /* Középső nav linkek helye – bővíthető */
-    .nb-links {
-        display: flex;
-        align-items: center;
-        gap: .25rem;
-        flex: 1;
-        padding-left: 1.5rem;
-    }
-
-    .nb-link {
-        color: var(--nb-muted2);
-        text-decoration: none;
-        font-size: .875rem;
-        font-weight: 500;
-        padding: .4rem .75rem;
-        border-radius: 7px;
-        transition: color .15s, background .15s;
-    }
-
-    .nb-link:hover {
-        color: var(--nb-text);
-        background: rgba(255, 255, 255, .05);
-    }
-
-    .nb-link.active {
-        color: var(--nb-text);
-        background: rgba(59, 130, 246, .1);
-    }
-
-    /* Jobb oldal */
-    .nb-right {
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-        flex-shrink: 0;
-    }
-
-    /* Badge */
-    .nb-badge {
-        display: inline-flex;
-        align-items: center;
-        padding: .2rem .55rem;
-        border-radius: 20px;
-        font-size: .7rem;
-        font-weight: 600;
-        letter-spacing: .04em;
+    #nav .nav-username {
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 0.75rem;
+        letter-spacing: 0.075em;
         text-transform: uppercase;
-    }
-
-    .nb-badge-admin {
-        background: rgba(168, 85, 247, .15);
-        color: var(--nb-admin);
-        border: 1px solid rgba(168, 85, 247, .25);
-    }
-
-    .nb-badge-user {
-        background: rgba(59, 130, 246, .12);
-        color: var(--nb-user);
-        border: 1px solid rgba(59, 130, 246, .2);
-    }
-
-    /* Avatar */
-    .nb-avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #3b82f6, #6366f1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'Syne', sans-serif;
-        font-weight: 700;
-        font-size: .8rem;
-        color: #fff;
-        flex-shrink: 0;
-    }
-
-    .nb-username {
-        font-size: .875rem;
-        font-weight: 500;
-        color: var(--nb-muted2);
-        max-width: 120px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        color: rgba(255, 255, 255, 0.6);
+        padding: 0 0.75rem 0 1.5rem;
+        border-left: solid 1px rgba(255, 255, 255, 0.2);
         white-space: nowrap;
     }
 
-    /* Gombok */
-    .nb-btn {
-        font-family: 'Epilogue', sans-serif;
-        font-size: .825rem;
-        font-weight: 600;
-        padding: .48rem 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: opacity .15s, background .15s, border-color .15s, color .15s, box-shadow .15s;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: .4rem;
-        border: none;
-        white-space: nowrap;
+    #nav .nav-role-badge {
+        font-family: "Source Sans Pro", Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 0.65rem;
+        letter-spacing: 0.075em;
+        text-transform: uppercase;
+        background: #18bfef;
+        color: #ffffff;
+        padding: 0.2rem 0.55rem;
+        margin-right: 1rem;
+        line-height: 1;
+        align-self: center;
     }
 
-    .nb-btn-ghost {
-        background: transparent;
-        border: 1px solid var(--nb-border);
-        color: var(--nb-muted2);
+    #nav .nav-role-badge.admin {
+        background: #a855f7;
     }
 
-    .nb-btn-ghost:hover {
-        border-color: #2a3048;
-        color: var(--nb-text);
+    /* Nav action gombok – a téma link stílusával */
+    #nav ul.links li.nav-action a {
+        color: rgba(255, 255, 255, 0.85);
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
 
-    .nb-btn-primary {
-        background: var(--nb-accent);
-        color: #fff;
-        box-shadow: 0 2px 10px rgba(59, 130, 246, .25);
+    #nav ul.links li.nav-action a:hover {
+        color: #18bfef !important;
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
-    .nb-btn-primary:hover {
-        opacity: .88;
-        box-shadow: 0 4px 14px rgba(59, 130, 246, .35);
+    /* Kijelentkezés – piros hover */
+    #nav ul.links li.nav-logout a:hover {
+        color: #ef4444 !important;
+        background-color: rgba(239, 68, 68, 0.1);
     }
 
-    .nb-btn-panel {
-        background: rgba(99, 102, 241, .12);
-        border: 1px solid rgba(99, 102, 241, .25);
-        color: #a5b4fc;
+    /* Belépés gomb – kiemelve */
+    #nav ul.links li.nav-login {
+        background-color: rgba(24, 191, 239, 0.15);
+        border-left: solid 2px #18bfef;
     }
 
-    .nb-btn-panel:hover {
-        background: rgba(99, 102, 241, .2);
-        border-color: rgba(99, 102, 241, .4);
-        color: #c7d2fe;
+    #nav ul.links li.nav-login a {
+        color: #18bfef !important;
     }
 
-    .nb-btn-logout {
-        background: transparent;
-        border: 1px solid var(--nb-border);
-        color: var(--nb-muted2);
-    }
-
-    .nb-btn-logout:hover {
-        border-color: var(--nb-danger);
-        color: var(--nb-danger);
-    }
-
-    /* Elválasztó */
-    .nb-divider {
-        width: 1px;
-        height: 20px;
-        background: var(--nb-border);
-        flex-shrink: 0;
-    }
-
-    /* Reszponzív */
-    @media (max-width: 600px) {
-        .nb-inner {
-            padding: .75rem 1rem;
-        }
-
-        .nb-links {
-            display: none;
-        }
-
-        .nb-username {
-            display: none;
-        }
-
-        .nb-badge {
-            display: none;
-        }
+    #nav ul.links li.nav-login a:hover {
+        background-color: rgba(24, 191, 239, 0.25);
+        color: #ffffff !important;
     }
 </style>
 
-<nav class="nb-wrap">
-    <div class="nb-inner">
+<nav id="nav">
 
-        <!-- Brand / logó -->
-        <a href="index.php" class="nb-brand">⬡ Vaszilij EDC</a>
+    <ul class="links">
 
-        <!-- Középső linkek – ide vehetsz fel saját oldalakat -->
-        <div class="nb-links">
-            <a href="index.php" class="nb-link">Főoldal</a>
-        </div>
+        <li><a href="/WEBPROG_GYAK/vaszilijedc/index.php">Kezdőlap</a></li>
+        <li><a href="/WEBPROG_GYAK/vaszilijedc/blog.php">Blog</a></li>
+        <li><a href="#">Írások</a></li>
+        <li><a href="/WEBPROG_GYAK/vaszilijedc/contact.php">Üzenetküldés</a></li>
+        <li><a href="/WEBPROG_GYAK/vaszilijedc/support.html">Támogatás</a></li>
 
-        <!-- Jobb oldali blokk -->
-        <div class="nb-right">
-
-            <?php if ($isLoggedIn): ?>
-                <!-- BEJELENTKEZETT állapot -->
-
-                <!-- Avatar + név + badge -->
-                <div class="nb-avatar"><?= $navInitial ?></div>
-                <span class="nb-username"><?= $navUsername ?></span>
-                <span class="nb-badge nb-badge-<?= $navRole ?>"><?= $navRole === 'admin' ? 'Admin' : 'User' ?></span>
-
-                <div class="nb-divider"></div>
-
-                <!-- User Manager gomb -->
-                <a href="user_manager_form.php" class="nb-btn nb-btn-panel">
-                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-                    </svg>
-                    <?= $navRole === 'admin' ? 'Felhasználók' : 'Profilom' ?>
+        <?php if ($isLoggedIn): ?>
+            <!-- Bejelentkezett: Panel gomb + Kilépés -->
+            <li class="nav-action">
+                <a href="/WEBPROG_GYAK/vaszilijedc/user_management_api/user_manager_form.php">
+                    <?= $isAdmin ? 'Felhasználók' : 'Profilom' ?>
                 </a>
+            </li>
+            <li class="nav-action nav-logout">
+                <a href="#" onclick="navLogout(); return false;">Kilépés</a>
+            </li>
+        <?php else: ?>
+            <!-- Kijelentkezett: Belépés gomb -->
+            <li class="nav-login">
+                <a href="/WEBPROG_GYAK/vaszilijedc/login.php">Belépés</a>
+            </li>
+        <?php endif; ?>
 
-                <!-- Kijelentkezés gomb -->
-                <button class="nb-btn nb-btn-logout" onclick="nbLogout()">
-                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4" />
-                        <polyline points="16 17 21 12 16 7" />
-                        <line x1="21" y1="12" x2="9" y2="12" />
-                    </svg>
-                    Kilépés
-                </button>
+    </ul>
 
-            <?php else: ?>
-                <!-- KIJELENTKEZETT állapot -->
+    <ul class="icons">
 
-                <a href="login.php" class="nb-btn nb-btn-ghost">Bejelentkezés</a>
-                <a href="login.php?tab=register" class="nb-btn nb-btn-primary">Regisztráció</a>
+        <?php if ($isLoggedIn): ?>
+            <!-- Bejelentkezett user neve + badge az icons részen -->
+            <li class="nav-user-info">
+                <span class="nav-username"><?= $navUsername ?></span>
+                <span class="nav-role-badge <?= $navRole ?>"><?= $isAdmin ? 'Admin' : 'User' ?></span>
+            </li>
+        <?php endif; ?>
 
-            <?php endif; ?>
+        <li>
+            <a href="https://facebook.com" target="_blank" class="icon brands fa-facebook-f">
+                <span class="label">Facebook</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://instagram.com" target="_blank" class="icon brands fa-instagram">
+                <span class="label">Instagram</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://youtube.com" target="_blank" class="icon brands fa-youtube">
+                <span class="label">Youtube</span>
+            </a>
+        </li>
 
-        </div>
-    </div>
+    </ul>
+
 </nav>
 
 <script>
-    async function nbLogout() {
-        await fetch('users_api.php?action=logout', {
+    async function navLogout() {
+        await fetch('/WEBPROG_GYAK/vaszilijedc/user_management_api/users_api.php?action=logout', {
             method: 'POST'
         });
-        window.location.href = 'index.php';
+        window.location.href = '/WEBPROG_GYAK/vaszilijedc/index.php';
     }
 </script>

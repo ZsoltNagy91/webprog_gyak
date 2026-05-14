@@ -1,3 +1,4 @@
+<?php require_once '../config/init.php'; ?>
 <?php
 // user_manager_form.php
 // Admin: minden felhasználót lát és szerkeszthet / törölhet
